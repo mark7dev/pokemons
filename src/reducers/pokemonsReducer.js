@@ -1,5 +1,5 @@
 const initialState = {
-    pokemons: [],
+    pokemon: null,
     error: false,
     loading: true,
     favorites: []
