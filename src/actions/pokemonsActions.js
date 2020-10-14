@@ -5,7 +5,8 @@ import {
     ADD_POKEMON,
     REMOVE_POKEMON,
     REMOVE_POKEMON_SUCCESS,
-    PERSIST_DATA
+    PERSIST_DATA,
+    CHECK_FAVORITES
 } from '../types';
 
 import axios from 'axios';
@@ -15,8 +16,8 @@ export const getPokemonAction = name => dispatch => {
     dispatch( getPokemon() )
     axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
         .then( res => {
-            console.log(res.data);
             dispatch (getPokemonSuccess(res.data))
+            dispatch ( checkFavorites() )
         })
         .catch( error => {
             console.log(error.response);
@@ -43,6 +44,10 @@ const getPokemonError = () => ({
     type: GET_POKEMON_ERROR
 })
 
+const checkFavorites = () => ({
+    type: CHECK_FAVORITES
+})
+
 
 export const addPokemonAction = pokemon => dispatch => {
     dispatch( addPokemon(pokemon) )
@@ -67,6 +72,7 @@ export const removePokemonAction = id => dispatch => {
     dispatch( removePokemon(id) )
     dispatch( removePokemonSuccess() )
     dispatch ( persistData() )
+    dispatch ( checkFavorites() )
     Swal.fire({
         icon: 'success',
         title: 'Yeah!',

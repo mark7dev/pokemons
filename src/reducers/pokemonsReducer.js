@@ -5,7 +5,8 @@ import {
     ADD_POKEMON,
     REMOVE_POKEMON,
     REMOVE_POKEMON_SUCCESS,
-    PERSIST_DATA
+    PERSIST_DATA,
+    CHECK_FAVORITES
 } from '../types';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
     error: false,
     loading: false,
     favorites: JSON.parse(localStorage.getItem("favs")),
-    toRemove: null
+    toRemove: null,
+    isFav: null
 }
 
 export default function(state = initialState, action) {
@@ -59,6 +61,11 @@ export default function(state = initialState, action) {
             localStorage.setItem("favs", JSON.stringify(state.favorites));
             return {
                 ...state
+            }
+        case CHECK_FAVORITES:
+            return {
+                ...state,
+                isFav: state.favorites.some(item => item.id === state.pokemon.id)
             }
         default:
             return state;

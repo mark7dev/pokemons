@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './Loader';
 import Card from './Card';
@@ -10,6 +10,7 @@ const Search = () => {
 
     const pokemon = useSelector( state => state.pokemonsState.pokemon);
     const loading = useSelector( state => state.pokemonsState.loading);
+    const isFav = useSelector( state => state.pokemonsState.isFav);
 
     const [ pokSearch, setPokSearch ] = useState('');
 
@@ -46,9 +47,16 @@ const Search = () => {
                     <Card 
                         pokemon={pokemon}
                     />
-                    <button onClick={addToFavorites}>Add to favorites</button>
+                    {isFav ? 
+                        <h4>Already in your favorites</h4>
+                        :
+                        <button 
+                            onClick={addToFavorites}
+                            disabled={isFav}
+                        >Add to favorites</button>
+                    }
                 </div>
-                 :
+                :
                 <div>
                     <h3>Catch your pokemon!</h3>
                 </div>   
