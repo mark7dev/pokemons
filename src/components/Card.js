@@ -1,8 +1,15 @@
 import React from 'react';
 
-const Card = () => {
+const Card = ({pokemon}) => {
+
+    const {id, name, sprites: {front_default} } = pokemon
+
     return ( 
-        <h1>Card</h1>
+        <div>
+            <img src={front_default} />
+            <p>{id}</p>
+            <p>{name}</p>
+        </div>
     );
 }
  
