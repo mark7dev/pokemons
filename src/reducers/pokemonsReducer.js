@@ -4,14 +4,15 @@ import {
     GET_POKEMON_ERROR,
     ADD_POKEMON,
     REMOVE_POKEMON,
-    REMOVE_POKEMON_SUCCESS
+    REMOVE_POKEMON_SUCCESS,
+    PERSIST_DATA
 } from '../types';
 
 const initialState = {
     pokemon: null,
     error: false,
     loading: false,
-    favorites: [],
+    favorites: JSON.parse(localStorage.getItem("favs")),
     toRemove: null
 }
 
@@ -53,6 +54,11 @@ export default function(state = initialState, action) {
                 ...state,
                 favorites: state.favorites.filter( pokemon => pokemon.id !== state.toRemove),
                 toRemove: null
+            }
+        case PERSIST_DATA:
+            localStorage.setItem("favs", JSON.stringify(state.favorites));
+            return {
+                ...state
             }
         default:
             return state;

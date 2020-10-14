@@ -11,7 +11,6 @@ const Search = () => {
     const pokemon = useSelector( state => state.pokemonsState.pokemon);
     const loading = useSelector( state => state.pokemonsState.loading);
 
-    const [ poksArr, setPoksArr ] = useState(pokemon);
     const [ pokSearch, setPokSearch ] = useState('');
 
     const handleChange = e => {

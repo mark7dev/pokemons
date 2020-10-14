@@ -4,7 +4,8 @@ import {
     GET_POKEMON_ERROR,
     ADD_POKEMON,
     REMOVE_POKEMON,
-    REMOVE_POKEMON_SUCCESS
+    REMOVE_POKEMON_SUCCESS,
+    PERSIST_DATA
 } from '../types';
 
 import axios from 'axios';
@@ -45,7 +46,7 @@ const getPokemonError = () => ({
 
 export const addPokemonAction = pokemon => dispatch => {
     dispatch( addPokemon(pokemon) )
-
+    dispatch ( persistData() )
     Swal.fire({
         icon: 'success',
         title: 'Yeah!',
@@ -58,9 +59,14 @@ const addPokemon = pokemon => ({
     payload: pokemon
 })
 
+const persistData = () => ({
+    type: PERSIST_DATA
+})
+
 export const removePokemonAction = id => dispatch => {
     dispatch( removePokemon(id) )
     dispatch( removePokemonSuccess() )
+    dispatch ( persistData() )
     Swal.fire({
         icon: 'success',
         title: 'Yeah!',
