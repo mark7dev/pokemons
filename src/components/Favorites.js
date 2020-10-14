@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import './styles/Favorites.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { removePokemonAction } from '../actions/pokemonsActions';
 
@@ -14,15 +15,17 @@ const Favorites = () => {
     }
 
     return ( 
-        <div>
-            {favorites.length === 0  ? <p>You don't have pokemons</p> :
+        <div className="favorites__container">
+            {favorites.length === 0  ? <h3>You don't have pokemons yet!</h3> :
             (favorites.map(item => (
-                <div>
+                <div className="card__container">
                     <Card 
                         key={item.id}
                         pokemon={item}
                     />
-                    <button onClick={() => onRemove(item.id)}>Delete</button>
+                    <div className="remove__container">
+                        <button onClick={() => onRemove(item.id)}><i className="fa fa-trash-o icon" aria-hidden="true"></i>Remove</button>
+                    </div>
                 </div>
             )))
             }

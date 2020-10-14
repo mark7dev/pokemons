@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './styles/Search.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './Loader';
 import Card from './Card';
@@ -30,7 +31,7 @@ const Search = () => {
     return ( 
         <div className="search__container">
             { loading ? <Loader /> : null}
-            <div>
+            <div className="inputSearch__container">
                 <input 
                     type='text' 
                     name='pokSearch'
@@ -43,17 +44,22 @@ const Search = () => {
                 >search</button>
             </div>
             { pokemon ?
-                <div>
+                <div className="card__container">
                     <Card 
                         pokemon={pokemon}
                     />
-                    {isFav ? 
-                        <h4>Already in your favorites</h4>
+                    {isFav ?
+                        <div className="warning__container">
+                            <i className="fa fa-check icon" aria-hidden="true"></i>
+                            <h4 className="warning">Already in your favorites!</h4>
+                        </div> 
                         :
-                        <button 
+                        <div className="add__container">
+                            <button 
                             onClick={addToFavorites}
                             disabled={isFav}
-                        >Add to favorites</button>
+                            ><i className="fa fa-plus-circle icon" aria-hidden="true"></i> Add to favorites</button>
+                        </div>    
                     }
                 </div>
                 :

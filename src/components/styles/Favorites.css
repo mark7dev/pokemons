@@ -1,0 +1,16 @@
+.favorites__container {
+    display: flex;
+    padding: 50px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card__container {
+    margin: 20px 10px;
+}
+
+.remove__container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}

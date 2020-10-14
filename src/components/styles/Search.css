@@ -1,0 +1,32 @@
+.search__container {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputSearch__container {
+    margin: 20px 0px;
+}
+
+.card__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.warning__container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    color: orangered;
+}
+
+.warning {
+    font-weight: bolder;
+}
+
+.add__container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
