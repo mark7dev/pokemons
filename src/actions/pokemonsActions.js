@@ -18,7 +18,7 @@ export const getPokemonAction = name => dispatch => {
         })
         .catch( error => {
             console.log(error.response);
-            dispatch( getPokemonError )
+            dispatch( getPokemonError() )
 
             Swal.fire({
                 icon: 'error',
@@ -39,4 +39,20 @@ const getPokemonSuccess = data => ({
 
 const getPokemonError = () => ({
     type: GET_POKEMON_ERROR
+})
+
+
+export const addPokemonAction = pokemon => dispatch => {
+    dispatch( addPokemon(pokemon) )
+
+    Swal.fire({
+        icon: 'Success',
+        title: 'Yeah!',
+        text: `${pokemon.name} was added to your favorites!`,
+      })
+}
+
+const addPokemon = pokemon => ({
+    type: ADD_POKEMON,
+    payload: pokemon
 })

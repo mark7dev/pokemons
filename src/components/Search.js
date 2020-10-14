@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './Loader';
 import Card from './Card';
-import { getPokemonAction } from '../actions/pokemonsActions';
+import { getPokemonAction, addPokemonAction } from '../actions/pokemonsActions';
 
 const Search = () => {
 
@@ -23,6 +23,11 @@ const Search = () => {
         setPokSearch('');
     }
 
+    const addToFavorites = () => {
+        console.log("ADD");
+        dispatch( addPokemonAction(pokemon) )
+    }
+
     return ( 
         <div className="search__container">
             { loading ? <Loader /> : null}
@@ -39,9 +44,13 @@ const Search = () => {
                 >search</button>
             </div>
             { pokemon ?
-                <Card 
-                    pokemon={pokemon}
-                /> :
+                <div>
+                    <Card 
+                        pokemon={pokemon}
+                    />
+                    <button onClick={addToFavorites}>Add to favorites</button>
+                </div>
+                 :
                 <div>
                     <h3>Catch your pokemon!</h3>
                 </div>   

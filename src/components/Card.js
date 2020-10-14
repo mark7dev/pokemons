@@ -6,7 +6,7 @@ const Card = ({pokemon}) => {
 
     return ( 
         <div>
-            <img src={front_default} />
+            <img src={front_default} alt=""/>
             <p>{id}</p>
             <p>{name}</p>
         </div>

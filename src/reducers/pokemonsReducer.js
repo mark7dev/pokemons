@@ -38,6 +38,8 @@ export default function(state = initialState, action) {
         case ADD_POKEMON:
             return {
                 ...state,
+                favorites: [...state.favorites, action.payload],
+                pokemon: null
             }
         case REMOVE_POKEMON:
             return {
