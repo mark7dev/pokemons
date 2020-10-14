@@ -24,7 +24,6 @@ const Search = () => {
     }
 
     const addToFavorites = () => {
-        console.log("ADD");
         dispatch( addPokemonAction(pokemon) )
     }
 

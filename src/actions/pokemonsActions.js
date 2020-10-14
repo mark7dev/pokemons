@@ -3,7 +3,8 @@ import {
     GET_POKEMON_SUCCESS,
     GET_POKEMON_ERROR,
     ADD_POKEMON,
-    REMOVE_POKEMON
+    REMOVE_POKEMON,
+    REMOVE_POKEMON_SUCCESS
 } from '../types';
 
 import axios from 'axios';
@@ -46,7 +47,7 @@ export const addPokemonAction = pokemon => dispatch => {
     dispatch( addPokemon(pokemon) )
 
     Swal.fire({
-        icon: 'Success',
+        icon: 'success',
         title: 'Yeah!',
         text: `${pokemon.name} was added to your favorites!`,
       })
@@ -55,4 +56,23 @@ export const addPokemonAction = pokemon => dispatch => {
 const addPokemon = pokemon => ({
     type: ADD_POKEMON,
     payload: pokemon
+})
+
+export const removePokemonAction = id => dispatch => {
+    dispatch( removePokemon(id) )
+    dispatch( removePokemonSuccess() )
+    Swal.fire({
+        icon: 'success',
+        title: 'Yeah!',
+        text: `Pokemon was removed from your favorites!`,
+      })
+}
+
+const removePokemon = id => ({
+    type: REMOVE_POKEMON,
+    payload: id
+})
+
+const removePokemonSuccess = () => ({
+    type: REMOVE_POKEMON_SUCCESS
 })

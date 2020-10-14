@@ -3,14 +3,16 @@ import {
     GET_POKEMON_SUCCESS,
     GET_POKEMON_ERROR,
     ADD_POKEMON,
-    REMOVE_POKEMON
+    REMOVE_POKEMON,
+    REMOVE_POKEMON_SUCCESS
 } from '../types';
 
 const initialState = {
     pokemon: null,
     error: false,
     loading: false,
-    favorites: []
+    favorites: [],
+    toRemove: null
 }
 
 export default function(state = initialState, action) {
@@ -44,6 +46,13 @@ export default function(state = initialState, action) {
         case REMOVE_POKEMON:
             return {
                 ...state,
+                toRemove: action.payload
+            }
+        case REMOVE_POKEMON_SUCCESS:
+            return {
+                ...state,
+                favorites: state.favorites.filter( pokemon => pokemon.id !== state.toRemove),
+                toRemove: null
             }
         default:
             return state;

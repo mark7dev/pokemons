@@ -1,11 +1,17 @@
 import React from 'react';
 import Card from './Card';
 import { useDispatch, useSelector } from 'react-redux';
-import {  } from '../actions/pokemonsActions';
+import { removePokemonAction } from '../actions/pokemonsActions';
 
 const Favorites = () => {
 
+    const dispatch = useDispatch();
+
     const favorites = useSelector( state => state.pokemonsState.favorites);
+
+    const onRemove = id => {
+        dispatch( removePokemonAction(id) );
+    }
 
     return ( 
         <div>
@@ -16,7 +22,7 @@ const Favorites = () => {
                         key={item.id}
                         pokemon={item}
                     />
-                    <button>Delete</button>
+                    <button onClick={() => onRemove(item.id)}>Delete</button>
                 </div>
             )))
             }
