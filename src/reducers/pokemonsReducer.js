@@ -13,7 +13,7 @@ const initialState = {
     pokemon: null,
     error: false,
     loading: false,
-    favorites: JSON.parse(localStorage.getItem("favs")),
+    favorites: JSON.parse(localStorage.getItem("favs")) ? JSON.parse(localStorage.getItem("favs")) : [],
     toRemove: null,
     isFav: null
 }
@@ -65,7 +65,7 @@ export default function(state = initialState, action) {
         case CHECK_FAVORITES:
             return {
                 ...state,
-                isFav: state.favorites.some(item => item.id === state.pokemon.id)
+                isFav: state.favorites ? state.favorites.some(item => item.id === state.pokemon.id) : false
             }
         default:
             return state;
