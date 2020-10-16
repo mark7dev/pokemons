@@ -51,7 +51,7 @@ const Search = () => {
                     {isFav ?
                         <div className="warning__container">
                             <i className="fa fa-check icon" aria-hidden="true"></i>
-                            <h4 className="warning">Already in your favorites!</h4>
+                            <h4 className="warning">In favorites!</h4>
                         </div> 
                         :
                         <div className="add__container">
